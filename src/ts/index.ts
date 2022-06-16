@@ -7,4 +7,4 @@
  * @packageDocumentation
  */
 
-export { generateKeys, RsaPublicKey, RsaPrivateKey } from './rsa'
+export { generateKeys, RsaPublicKey, RsaPrivateKey, RsaKeyPair } from './rsa'

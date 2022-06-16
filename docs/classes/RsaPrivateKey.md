@@ -6,6 +6,11 @@
 
 - [constructor](RsaPrivateKey.md#constructor)
 
+### Properties
+
+- [d](RsaPrivateKey.md#d)
+- [n](RsaPrivateKey.md#n)
+
 ### Methods
 
 - [decrypt](RsaPrivateKey.md#decrypt)
@@ -26,7 +31,27 @@
 
 #### Defined in
 
-rsa.ts:7
+[rsa.ts:7](https://github.com/errezeeta/rsa-module/blob/1595518/src/ts/rsa.ts#L7)
+
+## Properties
+
+### d
+
+• `Readonly` **d**: `bigint`
+
+#### Defined in
+
+[rsa.ts:5](https://github.com/errezeeta/rsa-module/blob/1595518/src/ts/rsa.ts#L5)
+
+___
+
+### n
+
+• `Readonly` **n**: `bigint`
+
+#### Defined in
+
+[rsa.ts:6](https://github.com/errezeeta/rsa-module/blob/1595518/src/ts/rsa.ts#L6)
 
 ## Methods
 
@@ -46,7 +71,7 @@ rsa.ts:7
 
 #### Defined in
 
-rsa.ts:12
+[rsa.ts:12](https://github.com/errezeeta/rsa-module/blob/1595518/src/ts/rsa.ts#L12)
 
 ___
 
@@ -66,4 +91,4 @@ ___
 
 #### Defined in
 
-rsa.ts:16
+[rsa.ts:16](https://github.com/errezeeta/rsa-module/blob/1595518/src/ts/rsa.ts#L16)

@@ -2,8 +2,8 @@ import * as bcu from 'bigint-crypto-utils'
 import * as bc from 'bigint-conversion'
 
 export class RsaPrivateKey {
-  private readonly d: bigint
-  private readonly n: bigint
+  readonly d: bigint
+  readonly n: bigint
   constructor (d: bigint, n: bigint) {
     this.d = d
     this.n = n
@@ -31,8 +31,8 @@ export class RsaPrivateKey {
 // }
 
 export class RsaPublicKey {
-  private readonly e: bigint
-  private readonly n: bigint
+  readonly e: bigint
+  readonly n: bigint
 
   constructor (e: bigint, n: bigint) {
     this.e = e
@@ -69,9 +69,9 @@ export class RsaPublicKey {
 //   return new RsaPublicKey(bc.hexToBigint(keyPair.e), bc.hexToBigint(keyPair.n))
 // }
 
-class RsaKeyPair {
-  private readonly publicKey: RsaPublicKey
-  private readonly privateKey: RsaPrivateKey
+export class RsaKeyPair {
+  readonly publicKey: RsaPublicKey
+  readonly privateKey: RsaPrivateKey
 
   constructor (publicKey: RsaPublicKey, privateKey: RsaPrivateKey) {
     this.publicKey = publicKey
@@ -79,14 +79,30 @@ class RsaKeyPair {
   }
 }
 
+function isCoprime (a: bigint, b: bigint): boolean {
+  const exp: bigint = BigInt(1)
+  return bcu.gcd(a, b) === exp
+}
+
+function genE (mcm: bigint, nbits: number): bigint {
+  let e: bigint = bcu.randBetween(mcm, BigInt(1))
+  while (!isCoprime(e, mcm)) {
+    e = bcu.randBetween(mcm, BigInt(1))
+  }
+
+  return e
+}
+
 export async function generateKeys (bitLength = 2048): Promise<RsaKeyPair> {
-  const e = 65537n
+  let e = 0n
   let p = 0n; let q = 0n; let n = 0n; let phi = 0n
   do {
     p = await bcu.prime(bitLength / 2 + 1)
     q = await bcu.prime(bitLength / 2)
     n = p * q
     phi = (p - 1n) * (q - 1n)
+    const mcm: bigint = bcu.lcm(p - BigInt(1), q - BigInt(1))
+    e = await genE(mcm, bitLength)
   } while (bcu.bitLength(n) !== bitLength || (phi % e === 0n) || q === p)
 
   const publicKey = new RsaPublicKey(e, n)

@@ -9,6 +9,7 @@ This module runs perfectly in node.js and browsers
 
 ### Classes
 
+- [RsaKeyPair](classes/RsaKeyPair.md)
 - [RsaPrivateKey](classes/RsaPrivateKey.md)
 - [RsaPublicKey](classes/RsaPublicKey.md)
 
@@ -20,7 +21,7 @@ This module runs perfectly in node.js and browsers
 
 ### generateKeys
 
-▸ **generateKeys**(`bitLength?`): `Promise`<`RsaKeyPair`\>
+▸ **generateKeys**(`bitLength?`): `Promise`<[`RsaKeyPair`](classes/RsaKeyPair.md)\>
 
 #### Parameters
 
@@ -30,8 +31,8 @@ This module runs perfectly in node.js and browsers
 
 #### Returns
 
-`Promise`<`RsaKeyPair`\>
+`Promise`<[`RsaKeyPair`](classes/RsaKeyPair.md)\>
 
 #### Defined in
 
-rsa.ts:82
+[rsa.ts:96](https://github.com/errezeeta/rsa-module/blob/1595518/src/ts/rsa.ts#L96)
